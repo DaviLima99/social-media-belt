@@ -1,0 +1,39 @@
+Objetivos:   
+    Must Have:
+        Gerenciar os links
+        Agrupalos
+        Gerenciar ou gerar utms
+        Pagina publica com todos os links
+        Encurtar link
+    Nice to Have:
+        Dominio proprio
+        analytics
+        Link nativo
+        p2p share ou banco de imagens
+
+------------------------------------------------
+
+Dados:
+    Accounts (tenant):
+        id, slug, plano, name
+    AccountDomain:
+        id, account_id, domain, status
+    AccountUser:
+        account_id, user_id, role
+    Users:
+        id, email, name
+    Link:
+        id, account_id, name, public_name, destination, slug
+    UTMS:
+        utm_source, utm_media
+    ShareableLink:
+        id, account_id, link_id, utm_id, analytics
+    LinkGroup:
+        id account_id, name
+
+
+======================================
+Regras (fair use):
+    Tentar limitar o nunmero de sign-ins 
+    Limitar o numero de dominios de destino
+    Somente permitir em contas premium
