@@ -1,15 +1,18 @@
+import Heading1 from "@/components/Heading1";
+import Heading2 from "@/components/Heading2";
+
 const AppHome = () => {
     return (
       <>
-          <h1 className="text-4xl font-semibold text-gray-800 dark:text-white">
-            Good afternoom, Charlie
-          </h1>
-          <h2 className="text-gray-400 text-md">
-            Here's what's happening with your ambassador account today.
-          </h2>
+          <Heading1>
+            Seja bem-vindo
+          </Heading1>
+          <Heading2>
+            Gerenciador de links
+          </Heading2>
           <div className="flex flex-col items-center w-full my-6 space-y-4 md:space-x-4 md:space-y-0 md:flex-row">
             <div className="w-full md:w-6/12">
-              <div className="relative w-full overflow-hidden bg-white shadow-lg dark:bg-gray-700">
+              <div className="relative w-full overflow-hidden bg-white shadow-lg  ">
                 <a href="#" className="block w-full h-full">
                   <div className="flex items-center justify-between px-4 py-6 space-x-4">
                     <div className="flex items-center">
@@ -19,11 +22,11 @@ const AppHome = () => {
                           </path>
                         </svg>
                       </span>
-                      <p className="ml-2 text-sm font-semibold text-gray-700 border-b border-gray-200 dark:text-white">
+                      <p className="ml-2 text-sm font-semibold text-gray-700 border-b border-gray-200  ">
                         Level 2 Ambassador
                       </p>
                     </div>
-                    <div className="mt-6 text-xl font-bold text-black border-b border-gray-200 md:mt-0 dark:text-white">
+                    <div className="mt-6 text-xl font-bold text-black border-b border-gray-200 md:mt-0  ">
                       $44,453.39
                       <span className="text-xs text-gray-400">
                         /$100K
@@ -39,8 +42,8 @@ const AppHome = () => {
             </div>
             <div className="flex items-center w-full space-x-4 md:w-1/2">
               <div className="w-1/2">
-                <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                  <p className="text-2xl font-bold text-black dark:text-white">
+                <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                  <p className="text-2xl font-bold text-black  ">
                     12
                   </p>
                   <p className="text-sm text-gray-400">
@@ -49,8 +52,8 @@ const AppHome = () => {
                 </div>
               </div>
               <div className="w-1/2">
-                <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                  <p className="text-2xl font-bold text-black dark:text-white">
+                <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                  <p className="text-2xl font-bold text-black  ">
                     $93.76
                   </p>
                   <p className="text-sm text-gray-400">
@@ -84,12 +87,12 @@ const AppHome = () => {
           </div>
           <div className="grid grid-cols-1 gap-4 my-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   Project Reffered
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     12
                   </p>
                   <span className="flex items-center text-xl font-bold text-green-500">
@@ -100,7 +103,7 @@ const AppHome = () => {
                     22%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 text-sm border-b border-gray-200 sm:space-x-12">
                     <p>
                       Unique URL
@@ -150,12 +153,12 @@ const AppHome = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   Project Paid
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     23
                   </p>
                   <span className="flex items-center text-xl font-bold text-green-500">
@@ -166,7 +169,7 @@ const AppHome = () => {
                     12%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 space-x-12 text-sm border-b border-gray-200 md:space-x-24">
                     <p>
                       User paid
@@ -216,12 +219,12 @@ const AppHome = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   New features
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     12
                   </p>
                   <span className="flex items-center text-xl font-bold text-red-500">
@@ -232,7 +235,7 @@ const AppHome = () => {
                     2%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 space-x-12 text-sm border-b border-gray-200 md:space-x-24">
                     <p>
                       Down
@@ -282,12 +285,12 @@ const AppHome = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   Sign in
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     16
                   </p>
                   <span className="flex items-center text-xl font-bold text-red-500">
@@ -298,7 +301,7 @@ const AppHome = () => {
                     14%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 space-x-12 text-sm border-b border-gray-200 md:space-x-24">
                     <p>
                       Amercia
@@ -348,12 +351,12 @@ const AppHome = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   Sales
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     9
                   </p>
                   <span className="flex items-center text-xl font-bold text-green-500">
@@ -364,7 +367,7 @@ const AppHome = () => {
                     34%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 space-x-12 text-sm border-b border-gray-200 md:space-x-24">
                     <p>
                       Templates
@@ -414,12 +417,12 @@ const AppHome = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
-                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max dark:text-white">
+              <div className="relative w-full px-4 py-6 bg-white shadow-lg  ">
+                <p className="text-sm font-semibold text-gray-700 border-b border-gray-200 w-max  ">
                   Maintenance
                 </p>
                 <div className="flex items-end my-6 space-x-2">
-                  <p className="text-5xl font-bold text-black dark:text-white">
+                  <p className="text-5xl font-bold text-black  ">
                     15
                   </p>
                   <span className="flex items-center text-xl font-bold text-green-500">
@@ -430,7 +433,7 @@ const AppHome = () => {
                     34%
                   </span>
                 </div>
-                <div className="dark:text-white">
+                <div className=" ">
                   <div className="flex items-center justify-between pb-2 mb-2 space-x-12 text-sm border-b border-gray-200 md:space-x-24">
                     <p>
                       Cloud
