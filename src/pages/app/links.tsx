@@ -1,6 +1,19 @@
 import Heading1 from "@/components/Heading1";
 import Heading2 from "@/components/Heading2";
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+
+
+const schema = yup.object({
+    slung: yup.string().required(),
+    name: yup.string().required(),
+    publicName: yup.string().required(),
+    destination: yup.string().required(),
+    appLink: yup.string().required()
+}).required();
+
 
 type Inputs = {
     slug: string,
@@ -11,7 +24,10 @@ type Inputs = {
 };
 
 const Links = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
+        resolver: yupResolver(schema)
+    });
+
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
     return (
@@ -51,17 +67,20 @@ const Links = () => {
                         <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                             <div>
                                 <div className=" relative ">
-                                    <input type="text" {...register("slug")}  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Identificador (slug)" />
+                                    <input type="text" {...register("slug")} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Identificador (slug)" />
+                                    <p>{errors.slug?.message}</p>
                                 </div>
                             </div>
                             <div>
                                 <div className=" relative ">
                                     <input type="text" {...register("name")} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Nome interno" />
+                                    <p>{errors.name?.message}</p>
                                 </div>
                             </div>
                             <div>
                                 <div className=" relative ">
                                     <input type="text" {...register("publicName")} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Nome público" />
+                                    <p>{errors.publicName?.message}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,11 +94,13 @@ const Links = () => {
                             <div>
                                 <div className=" relative ">
                                     <input type="text" {...register("destination")} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="https://" />
+                                    <p>{errors.destination?.message}</p>
                                 </div>
                             </div>
                             <div>
                                 <div className=" relative ">
                                     <input type="text" {...register("appLink")} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="TBD link interno para app" />
+                                    <p>{errors.appLink?.message}</p>
                                 </div>
                             </div>
                         </div>
