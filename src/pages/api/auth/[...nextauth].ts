@@ -1,10 +1,12 @@
+import { logger } from "@/lib/logger"
 import prisma from "@/lib/prisma"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { NextApiHandler } from "next"
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
@@ -15,7 +17,48 @@ export const authOptions: NextAuthOptions = {
     theme: {
         colorScheme: "light",
     },
-    callbacks: {}
+    session: { strategy: "jwt"},
+    callbacks: {
+        async jwt({ token, user, account, profile, isNewUser }) {
+            if(isNewUser) {
+                console.log("Criando novo usuário")
+                const tenants = await prisma.tenant.findFirst({
+                    where: {
+                        userId: user.id
+                    }
+                })
+
+                if (!tenants) {
+                    await prisma.tenant.create({
+                        data: {
+                            userId: user.id,
+                            plan: 'free',
+                            slug: 'meutenant',
+                            image: '',
+                            name: 'Meu Tenant'
+                        }
+                    })
+                }
+            }
+            
+
+            return token;
+        }
+    },
+    debug: true,
+    logger: {
+        error: (code, metadata) => {
+          logger.error(code, metadata);
+        },
+        warn: (code) => {
+          logger.warn(code);
+        },
+        debug: (code, metadata) => {
+          logger.debug(code, metadata);
+        }
+    }
 }
 
-export default NextAuth(authOptions)
+const authHandler: NextApiHandler = (req, res) =>
+  NextAuth(req, res, authOptions);
+export default authHandler;
