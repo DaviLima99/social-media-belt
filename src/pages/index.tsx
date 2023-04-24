@@ -21,7 +21,7 @@ export default function Home() {
         <li><Link href='/itau'>Itau</Link></li>
       </ul>
       <p>
-        <button onClick={() => signIn()}>Sign in</button>
+        <button onClick={() => signIn('github', { callbackUrl: "/app"})}>Sign in</button>
       </p>
       <p>
         Signed in as {session?.user?.email} <br />

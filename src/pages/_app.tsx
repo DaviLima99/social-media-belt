@@ -1,4 +1,5 @@
 import LayoutApp from '@/components/Layout/LayoutApp'
+import LayoutEmpty from '@/components/Layout/LayoutEmpty'
 import LayoutPublic from '@/components/Layout/LayoutPublic'
 import LayoutTenant from '@/components/Layout/LayoutTenant'
 import '@/styles/globals.css'
@@ -17,6 +18,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
 
   if (pathname.indexOf('/[slug]') == 0) {
     Layout = LayoutTenant
+  }
+
+  if (pathname === '/app') {
+    Layout = LayoutEmpty
   }
 
   return (
