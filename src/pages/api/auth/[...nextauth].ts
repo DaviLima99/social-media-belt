@@ -6,7 +6,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
@@ -20,6 +20,7 @@ const authOptions: NextAuthOptions = {
     session: { strategy: "jwt"},
     callbacks: {
         async session({session, token, user}) {
+            console.log("Buscando sessao")
             //@ts-ignore             
             session.user.id = token.sub 
             return session
@@ -31,7 +32,7 @@ const authOptions: NextAuthOptions = {
                     where: {
                         users: {
                             some: {
-                                userId: user.id
+                                userId: user?.id
                             }
                         }
                     }
@@ -48,8 +49,9 @@ const authOptions: NextAuthOptions = {
                     })
 
                     await prisma.usersOnTenant.create({
+                        //@ts-ignore
                         data: {
-                            userId: user.id,
+                            userId: user?.id,
                             tenantId: tenant.id,
                             role: "default",
                             assignedBy: "system"
@@ -76,6 +78,4 @@ const authOptions: NextAuthOptions = {
     }
 }
 
-const authHandler: NextApiHandler = (req, res) =>
-  NextAuth(req, res, authOptions);
-export default authHandler;
+export default NextAuth(authOptions)

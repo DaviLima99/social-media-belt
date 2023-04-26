@@ -61,7 +61,8 @@ model Tenant {
   plan   String
   image   String
   users UsersOnTenant[]
-
+  links Link[]
+  
   createdAt DateTime @default(now()) @db.Timestamp(6)
 } 
 
@@ -75,4 +76,16 @@ model UsersOnTenant {
   assignedBy String
 
   @@id([userId, tenantId])
+}
+
+model Link {
+  id        String     @id @default(cuid())
+  name String
+  publicName String
+  destination String
+  slug String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tenantId String
 }

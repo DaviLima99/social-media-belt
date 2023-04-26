@@ -1,9 +1,11 @@
+import { Tenant } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
+//@ts-ignore
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const AppIndex = () => {
@@ -37,7 +39,7 @@ const AppIndex = () => {
             <img src={image} alt={name} className="rounded-full w-16 inline-block" />
             <h1>{name}</h1>
             <div className="mt-6">
-                {data && data.lenght && data.map((tenant) => (
+                {data && data.lenght && data.map((tenant: Tenant) => (
                     <Link href={"/app/" + tenant.id} legacyBehavior>
                         <a className="inline-block w-full px-4 py-2 text-center font-medium text-black bg-white border rounded-md hover:bg-gray-100">{tenant.name}</a>
                     </Link>
