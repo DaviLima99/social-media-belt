@@ -17,8 +17,9 @@ export const post = async ({ url, data} : Props) => {
 }
 
 export const delet = async ({ url } : Props) => {
-    const res =  await fetch("url", {
+    const res =  await fetch(url, {
         method: 'DELETE'
     })
+
     return res.json();
 }

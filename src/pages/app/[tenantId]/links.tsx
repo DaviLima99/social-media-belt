@@ -4,10 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import { Link } from "@prisma/client";
 import { useGet } from "@/hooks/api";
 import { delet, post } from "@/lib/fetch";
+import Alert from "@/components/Alert";
 
 
 const schema = yup.object().shape({
@@ -41,13 +41,13 @@ const Links = () => {
     });
 
     const submit: SubmitHandler<Inputs> = async (input) => {
-        const data = await post({url: `/api/${router?.query?.tenantId}/links`, data: input})
+        const data = await post({ url: `/api/${router?.query?.tenantId}/links`, data: input })
         await mutate();
         reset();
     }
 
     const deleteLink = async (id: string) => {
-        await delet({url: `/api/${router?.query?.tenantId}/links/${id}`})
+        const data = await delet({ url: `/api/${router?.query?.tenantId}/links/${id}` })
 
         await mutate();
     }
@@ -142,6 +142,12 @@ const Links = () => {
                 </div>
             )}
 
+            {data?.length === 0 && (
+                <div className="w-full mt-4">
+                    <Alert text="Você não possui links cadastrados" />
+                </div>
+            )}
+
             {data?.length > 0 && (
                 <div className="container max-w-3xl px-4 mx-auto sm:px-8">
                     <div className="py-8">
@@ -149,7 +155,7 @@ const Links = () => {
                             <h2 className="text-2xl leading-tight">
                                 Seus Links
                             </h2>
-              
+
                         </div>
                         <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
                             <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
@@ -250,8 +256,7 @@ const Links = () => {
                         </div>
                     </div>
                 </div>
-            )
-            }
+            )}
         </>
     )
 }
