@@ -4,10 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 import { useSession } from "next-auth/react";
-import axios from "axios";
 import { Link } from "@prisma/client";
+import { useGet } from "@/hooks/api";
+import { delet, post } from "@/lib/fetch";
 
 
 const schema = yup.object().shape({
@@ -29,12 +29,11 @@ type Inputs = {
 
 
 //@ts-ignore
-const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Links = () => {
     const router = useRouter();
 
-    const { data, mutate, isLoading, error } = useSWR(`/api/${router?.query?.tenantId}/links`, fetcher)
+    const { data, mutate, isLoading, error } = useGet(`/api/${router?.query?.tenantId}/links`)
 
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<Inputs>({
@@ -42,22 +41,13 @@ const Links = () => {
     });
 
     const submit: SubmitHandler<Inputs> = async (input) => {
-        await fetch(`/api/${router?.query?.tenantId}/links`, {
-            body: JSON.stringify(input),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST'
-        })
+        const data = await post({url: `/api/${router?.query?.tenantId}/links`, data: input})
         await mutate();
-
         reset();
     }
 
     const deleteLink = async (id: string) => {
-        await fetch(`/api/${router?.query?.tenantId}/links/${id}`, {
-            method: 'DELETE'
-        })
+        await delet({url: `/api/${router?.query?.tenantId}/links/${id}`})
 
         await mutate();
     }
