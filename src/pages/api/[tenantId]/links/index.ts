@@ -4,6 +4,11 @@ import prisma from "@/lib/prisma";
 // import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 
+interface LinkPaginationWrapper {
+    cursor: string
+    take: number
+    items: Link[]
+}
 
 type Link = {
     id: string
@@ -15,9 +20,9 @@ type Error = {
     message: string
 }
 
-export default async function handler(
+export default async function handler( 
     req: NextApiRequest,
-    res: NextApiResponse<Link|Error>) {
+    res: NextApiResponse<LinkPaginationWrapper|Link|Error>) {
 
     const session = await getSession({ req })
 
@@ -40,15 +45,44 @@ export default async function handler(
             return res.send(savedLink)
         }
 
-        const links = await prisma.link.findMany({
-            where: {
-                tenantId: {
-                    equals: tenantId
+        const { cursor, take } = req.query;
+        let links = [] as Link[]
+        if (cursor) {
+            links = await prisma.link.findMany({
+                where: {
+                    tenantId: {
+                        equals: tenantId
+                    }
+                },
+                cursor: {
+                    id: String(cursor)
+                },
+                skip: 1,
+                take: Number(take || 10),
+                orderBy: {
+                    id: 'asc'
                 }
-            }
-        });
+            });
 
-        return res.send(links);
+        } else {
+            links = await prisma.link.findMany({
+                where: {
+                    tenantId: {
+                        equals: tenantId
+                    }
+                },
+                take: Number(take || 10),
+                orderBy: {
+                    id: 'asc'
+                }
+            });
+        }
+           
+        return res.send({
+            cursor: '',
+            take: 10,
+            items: links
+        });
     } else {
         res.send({message: "403"})
     }
