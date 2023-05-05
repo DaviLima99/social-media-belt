@@ -19,6 +19,12 @@ const schema = yup.object().shape({
     appLink: yup.string().required()
 }).required();
 
+interface ILink {
+    id: string
+    name: string
+    publicName: string
+    destination: string
+}
 
 type Inputs = {
     slug: string,
@@ -181,7 +187,7 @@ const Links = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {data && data.items.map((link) => (
+                                        {data && data.items.map((link: ILink) => (
                                             <tr>
                                                 <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                                     <div className="flex items-center">
